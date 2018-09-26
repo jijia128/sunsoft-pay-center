@@ -19,7 +19,6 @@
 			<artifactId>spring-cloud-starter-zipkin</artifactId>
 		</dependency>
 
-
 		<!-- 公共实体类模块 -->
    		<dependency>
 			<groupId>com.sunsoft.pay.central</groupId>
