@@ -3,6 +3,6 @@ spring:
     name: eureka-client
   cloud:
     config:
-      label: master
+      label: develop
       profile: uat
       uri: http://localhost:8888/
