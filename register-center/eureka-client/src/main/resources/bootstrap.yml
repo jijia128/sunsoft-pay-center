@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: eureka-client
+  cloud:
+    config:
+      label: master
+      profile: uat
+      uri: http://localhost:8888/

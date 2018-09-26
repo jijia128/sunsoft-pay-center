@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: auth-gateway
+  cloud:
+    config:
+      label: master
+      profile: uat
+      uri: http://localhost:8888/
+
+ 
