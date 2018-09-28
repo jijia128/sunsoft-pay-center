@@ -8,9 +8,7 @@ management:
   endpoint:
     health:
       show-details: always  
-spring:  
-  application:  
-    name: admin-server
+spring:
   boot:  
     admin:  
       notify:  
