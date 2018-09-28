@@ -1,10 +1,12 @@
 spring:
   application:
     name: auth-gateway
+  profiles:
+    active: @spring.profiles.active@
   cloud:
     config:
       label: develop
-      profile: uat
+      profile: @spring.profiles.active@
       uri: http://localhost:8888/
 
  

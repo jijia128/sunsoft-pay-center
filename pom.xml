@@ -7,6 +7,7 @@
 	<packaging>pom</packaging>
 
 	<properties>
+		<resource.delimiter>@</resource.delimiter>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
@@ -50,6 +51,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
 	<dependencyManagement>
 		<dependencies>
         <dependency>
@@ -68,6 +70,41 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<profiles>
+		<!--开发环境-->
+		<profile>
+			<id>dev</id>
+			<properties>
+				<spring.profiles.active>dev</spring.profiles.active>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<!--测试环境-->
+		<profile>
+			<id>test</id>
+			<properties>
+				<spring.profiles.active>test</spring.profiles.active>
+			</properties>
+		</profile>
+		<!--准生产环境-->
+		<profile>
+			<id>uat</id>
+			<properties>
+				<spring.profiles.active>uat</spring.profiles.active>
+			</properties>
+		</profile>
+		<!--生产环境-->
+		<profile>
+			<id>release</id>
+			<properties>
+				<spring.profiles.active>release</spring.profiles.active>
+			</properties>
+		</profile>
+	</profiles>
+
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -109,7 +146,7 @@
 					<include>**/*.xsd</include>
 					<include>**/*.ftl</include>
 				</includes>
-				<filtering>false</filtering>
+				<filtering>true</filtering>
 			</resource>
 			<resource>
 				<directory>src/main/java</directory>
@@ -148,6 +185,5 @@
 		<module>job-center</module>
 		<!-- 业务中心 -->
 		<module>business-center</module>
-
 	</modules>
 </project>
