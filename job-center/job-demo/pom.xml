@@ -67,7 +67,7 @@
         <!-- xxl-job-core -->
         <dependency>
             <groupId>com.sunsoft.pay.central</groupId>
-            <artifactId>sunsoft-pay-center</artifactId>
+            <artifactId>job-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

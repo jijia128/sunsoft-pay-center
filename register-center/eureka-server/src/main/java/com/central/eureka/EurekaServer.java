@@ -20,6 +20,11 @@ import org.springframework.context.ConfigurableApplicationContext;
 @EnableTurbine
 public class EurekaServer {
 	public static void main(String[] args) {
-		SpringApplication.run(EurekaServer.class, args);
+//    	1本地启动采用此方法加载profiles文件
+//		ConfigurableApplicationContext context = new SpringApplicationBuilder(UnieapEurekaServerApplication.class).profiles("slave3").run(args);
+//    	2服务器采用此方法 java -jar   --spring.profiles.active=slave3;
+//    	 SpringApplication.run(DreiEurekaServerApp.class, args);
+//		SpringApplication.run(EurekaServer.class, args);
+		ConfigurableApplicationContext context = new SpringApplicationBuilder(EurekaServer.class).profiles("slave0").run(args);
 	}
 }
