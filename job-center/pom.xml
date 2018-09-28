@@ -45,7 +45,6 @@
 		<module>job-core</module>
 		<module>job-admin</module>
 		<module>job-demo</module>
-
 	</modules>
 
 </project>

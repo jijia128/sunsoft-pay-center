@@ -73,8 +73,8 @@
 		
 		<!-- 关系型和非关系型数据库配置 -->
 		<dependency>
-			<groupId>com.central</groupId>
-			<artifactId>db-core</artifactId>
+			<groupId>com.sunsoft.pay.central</groupId>
+			<artifactId>commons-db-core</artifactId>
 			<version>${core.version}</version>
 		</dependency>
 		 
@@ -164,7 +164,7 @@
 
 		<!-- xxl-job-core -->
 		<dependency>
-			<groupId>com.central</groupId>
+			<groupId>com.sunsoft.pay.central</groupId>
 			<artifactId>job-core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
