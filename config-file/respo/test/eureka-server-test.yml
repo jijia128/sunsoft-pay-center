@@ -1,5 +1,5 @@
 server:
-  port: 1111
+  port: 1112
 spring:
   zipkin:
     base-url: http://127.0.0.1:11008
