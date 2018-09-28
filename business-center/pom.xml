@@ -14,6 +14,8 @@
 	<module>file-center</module>
 	<!-- 后台中心 -->
 	<module>back-center</module>
+      <!-- test中心 -->
+      <module>test-center</module>
     <!-- 代码生成器
 	<module>generator-center</module>
     -->
