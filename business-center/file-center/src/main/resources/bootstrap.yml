@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: file-center
+  profiles:
+    active: @spring.profiles.active@
+  cloud:
+    config:
+      label: develop
+      profile: @spring.profiles.active@
+      uri: http://localhost:8888/
