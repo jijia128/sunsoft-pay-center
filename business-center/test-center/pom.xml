@@ -9,16 +9,6 @@
   
   
    <dependencies>
-	   <!--配置中心-->
-	   <dependency>
-		   <groupId>org.springframework.cloud</groupId>
-		   <artifactId>spring-cloud-starter-config</artifactId>
-	   </dependency>
-	   <!-- 服务追踪 -->
-	   <dependency>
-		   <groupId>org.springframework.cloud</groupId>
-		   <artifactId>spring-cloud-starter-zipkin</artifactId>
-	   </dependency>
    		<!-- 公共实体类模块 -->
    		<dependency>
 			<groupId>com.sunsoft.pay.central</groupId>
@@ -31,7 +21,31 @@
 			<artifactId>commons-db-core</artifactId>
 			<version>${core.version}</version>
 		</dependency>
+	   <!-- 权限认证，微服务权限验证通用模块 -->
+	   <dependency>
+		   <groupId>com.sunsoft.pay.central</groupId>
+		   <artifactId>commons-oauth-core</artifactId>
+		   <version>${core.version}</version>
+	   </dependency>
+
+	   <!--配置中心-->
+	   <dependency>
+		   <groupId>org.springframework.cloud</groupId>
+		   <artifactId>spring-cloud-starter-config</artifactId>
+	   </dependency>
+	   <!-- 服务追踪 -->
+	   <dependency>
+		   <groupId>org.springframework.cloud</groupId>
+		   <artifactId>spring-cloud-starter-zipkin</artifactId>
+	   </dependency>
+	   <!-- 负载均衡-->
 		<dependency>
+		   <groupId>org.springframework.cloud</groupId>
+		   <artifactId>spring-cloud-starter-openfeign</artifactId>
+	   </dependency>
+
+
+	   <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
@@ -83,9 +97,7 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
-		
-		
-		
+
 		<!-- swagger -->
 		<dependency>
 			<groupId>io.springfox</groupId>
@@ -103,21 +115,10 @@
 			<version>${swagger.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.github.xiaoymin</groupId>
-			<artifactId>swagger-bootstrap-ui</artifactId>
-			<version>1.6</version>
-		</dependency>
-   		<dependency>
-			<groupId>com.zyplayer</groupId>
-			<artifactId>swagger-mg-ui</artifactId>
-			<version>1.0.4</version>
-		</dependency>
 		
   </dependencies>
   
-  <!-- 形成带第三方jar包的可执行jar包，jar包目录结构如下 application.properties lib META-INF mybatis 
-		org -->
+  <!-- 形成带第三方jar包的可执行jar包，jar包目录结构如下 application.properties lib META-INF mybatis  org -->
 	<build>
 		<plugins>
 			<plugin>

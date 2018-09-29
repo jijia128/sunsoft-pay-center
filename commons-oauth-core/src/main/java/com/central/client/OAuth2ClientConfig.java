@@ -37,14 +37,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class OAuth2ClientConfig extends ResourceServerConfigurerAdapter{
 
  
-		//对应oauth_client_details的 resource_ids字段 如果表中有数据 client_id只能访问响应resource_ids的资源服务器
-		private static final String DEMO_RESOURCE_ID = "api-user";
-		
-		@Resource 
-		private ObjectMapper objectMapper ; //springmvc启动时自动装配json处理类
+	//对应oauth_client_details的 resource_ids字段 如果表中有数据 client_id只能访问响应resource_ids的资源服务器
+	private static final String DEMO_RESOURCE_ID = "api-user";
 
-		@Autowired(required = false)
-		private TokenStore redisTokenStore;
+	@Resource
+	private ObjectMapper objectMapper ; //springmvc启动时自动装配json处理类
+
+	@Autowired(required = false)
+	private TokenStore redisTokenStore;
 
 	@Autowired(required = false)
 	private JwtTokenStore jwtTokenStore;

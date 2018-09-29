@@ -169,8 +169,10 @@
 	<modules>
 		<!--数据核心访问模块-->
 		<module>commons-db-core</module>
-		<!-- 公共模块 -->
+		<!-- 公共模块，公共类，工具类，通用模块 -->
 		<module>commons-api-core</module>
+		<!-- 权限认证，微服务权限验证通用模块 -->
+		<module>commons-oauth-core</module>
 		<!--注册中心-->
 		<module>register-center</module>
 		<!-- 配置中心 -->

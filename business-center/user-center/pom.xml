@@ -6,20 +6,8 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
   <artifactId>user-center</artifactId>
-  
-  
+
    <dependencies>
-	   <!--配置中心-->
-	   <dependency>
-		   <groupId>org.springframework.cloud</groupId>
-		   <artifactId>spring-cloud-starter-config</artifactId>
-	   </dependency>
-	   <!-- 服务追踪 -->
-	   <dependency>
-		   <groupId>org.springframework.cloud</groupId>
-		   <artifactId>spring-cloud-starter-zipkin</artifactId>
-	   </dependency>
-   		
    		<!-- 公共实体类模块 -->
    		<dependency>
 			<groupId>com.sunsoft.pay.central</groupId>
@@ -32,14 +20,28 @@
 			<artifactId>commons-db-core</artifactId>
 			<version>${core.version}</version>
 		</dependency>
+	   <!-- 权限认证，微服务权限验证通用模块 -->
+	   <dependency>
+		   <groupId>com.sunsoft.pay.central</groupId>
+		   <artifactId>commons-oauth-core</artifactId>
+		   <version>${core.version}</version>
+	   </dependency>
 
-		
+	   <!--配置中心-->
+	   <dependency>
+		   <groupId>org.springframework.cloud</groupId>
+		   <artifactId>spring-cloud-starter-config</artifactId>
+	   </dependency>
+	   <!-- 服务追踪 -->
+	   <dependency>
+		   <groupId>org.springframework.cloud</groupId>
+		   <artifactId>spring-cloud-starter-zipkin</artifactId>
+	   </dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 
 		<dependency>
 			<groupId>org.springframework</groupId>
