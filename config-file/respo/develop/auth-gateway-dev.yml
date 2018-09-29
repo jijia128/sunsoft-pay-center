@@ -100,7 +100,6 @@ mybatis:
   config-location: classpath:mybatis.cfg.xml
   mapper-locations: classpath*:com/central/**/dao/*.xml  
 
-
 security:
   oauth2:
     token:
@@ -112,9 +111,6 @@ permit:
   http_urls:  /test163/** , /api-auth/** , /health ,/doc.html,/test111 ,/api-user/users-anon/login ,/user-center/users-anon/login,/document.html,**/v2/api-docs
   oauth_urls: /test163/** , /api-auth/** , /doc.html ,/test111 ,/api-user/users-anon/login,/user-center/users-anon/login,/document.html,**/v2/api-docs
   
-
- 
-
 #设置最大超时时间
 ribbon:  
   httpclient:
@@ -124,11 +120,8 @@ ribbon:
   ReadTimeout: 90000  
   ConnectTimeout: 90000 
 
-
 #设置最大容错超时时间
 hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 90000
-
-
 
 #设置最大容错超时时间
 hystrix:
@@ -172,6 +165,11 @@ zuul:
       sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods
       path: /api-file/**
       service-id: file-center  
+      strip-prefix: true
+    test:
+      sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods
+      path: /api-test/**
+      service-id: test-center
       strip-prefix: true
     sms:
       sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods
