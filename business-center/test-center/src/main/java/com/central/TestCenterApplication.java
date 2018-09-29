@@ -21,14 +21,14 @@ import com.central.autoconfigure.port.PortApplicationEnvironmentPreparedEventLis
 @EnableLogging
 @EnableDiscoveryClient
 @SpringBootApplication
-public class UserCenterApplication {
+public class TestCenterApplication {
 	
 	public static void main(String[] args) {
 		//		固定端口启动
 		//		SpringApplication.run(UserCenterApp.class, args);
 		
 		//随机端口启动
-		SpringApplication app = new SpringApplication(UserCenterApplication.class);
+		SpringApplication app = new SpringApplication(TestCenterApplication.class);
         app.addListeners(new PortApplicationEnvironmentPreparedEventListener());
         app.run(args);
 		
