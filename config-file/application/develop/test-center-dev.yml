@@ -107,8 +107,8 @@ security:
         type: redis
 
 permit:
-  http_urls:  /test/**
-  oauth_urls: /test/**
+  http_urls:  /open/**
+  oauth_urls: /open/**
 
 #设置最大超时时间
 ribbon:  

@@ -25,5 +25,7 @@ public interface TestUserClient {
     @GetMapping("/test/{id}")
     SysUser findUserById(@PathVariable(value="id") Long id);
 
+    @GetMapping("/open/user/{id}")
+    public SysUser findById(@PathVariable(value="id") Long id);
 
 }

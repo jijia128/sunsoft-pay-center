@@ -72,5 +72,10 @@ public class TestController {
         return appUserService.findById(id);
     }
 
+    @GetMapping("/open/user/{id}")
+    public SysUser findById(@PathVariable Long id) {
+        return appUserService.findById(id);
+    }
+
 
 }
