@@ -48,7 +48,7 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 @RestController
 @Api(tags = "用户模块api")
-public class SysUserController {
+public class TestController {
 
     @Autowired
     private SysUserService appUserService;
@@ -61,46 +61,16 @@ public class SysUserController {
      * @return
      */
     @ApiOperation(value = "根据access_token当前登录用户")
-    @GetMapping("/users/current")
+    @GetMapping("/test/current")
     public LoginAppUser getLoginAppUser() {
         return SysUserUtil.getLoginAppUser();
     }
 
     @PreAuthorize("hasAuthority('user:get/users/{id}')")
-    @GetMapping("/users/{id}")
+    @GetMapping("/test/{id}")
     public SysUser findUserById(@PathVariable Long id) {
         return appUserService.findById(id);
     }
 
-
-
-    /**
-     * 导出数据
-     * @return
-     */
-    @PostMapping("/users/exportUser")
-    @PreAuthorize("hasAuthority('user:post/users/exportUser')")
-    public void exportUser(@RequestParam Map<String, Object> params, HttpServletRequest request, HttpServletResponse response) {
-        List<SysUserExcel> result = appUserService.findAllUsers(params);
-
-        response.setContentType("application/vnd.ms-excel");
-        response.setHeader("Content-disposition", "attachment;filename=myExcel.xls");
-        OutputStream ouputStream = null;
-        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("用户导出","用户"),
-                SysUserExcel.class, result );
-        try {
-            ouputStream = response.getOutputStream();
-            workbook.write(ouputStream);
-        } catch (Exception e) {
-            throw new RuntimeException("系统异常");
-        } finally {
-            try {
-                ouputStream.flush();
-                ouputStream.close();
-            } catch (Exception e) {
-                throw new RuntimeException("系统异常");
-            }
-        }
-    }
 
 }

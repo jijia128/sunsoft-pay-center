@@ -1,18 +1,14 @@
-package com.central.client.service;
+package com.central.client.fallback;
 
 
-import com.central.client.bean.User;
+import com.central.client.TestUserClient;
 import com.central.model.user.LoginAppUser;
 import com.central.model.user.SysUser;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.Map;
-
 
 @Component
-public class UserServiceFallback implements TestUserService {
+public class UserServiceFallback implements TestUserClient {
 
     @Override
     public LoginAppUser getLoginAppUser() {
@@ -24,8 +20,4 @@ public class UserServiceFallback implements TestUserService {
         return new SysUser();
     }
 
-    @Override
-    public void exportUser(Map<String, Object> params) {
-
-    }
 }
