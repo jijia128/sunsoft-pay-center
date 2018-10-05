@@ -108,8 +108,8 @@ security:
 
 
 permit:
-  http_urls:  /test163/** , /api-auth/** , /health ,/doc.html,/open/** ,/api-user/users-anon/login ,/user-center/users-anon/login,/document.html,**/v2/api-docs
-  oauth_urls: /test163/** , /api-auth/** , /doc.html ,/open/** ,/api-user/users-anon/login,/user-center/users-anon/login,/document.html,**/v2/api-docs
+  http_urls:  /test163/** , /api-auth/** , /health ,/doc.html,/api-test/open/** ,/api-user/users-anon/login ,/user-center/users-anon/login,/document.html,**/v2/api-docs
+  oauth_urls: /test163/** , /api-auth/** , /doc.html ,/api-test/open/** ,/api-user/users-anon/login,/user-center/users-anon/login,/document.html,**/v2/api-docs
   
 #设置最大超时时间
 ribbon:  
