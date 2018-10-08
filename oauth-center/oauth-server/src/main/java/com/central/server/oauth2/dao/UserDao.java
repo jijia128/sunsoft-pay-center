@@ -7,11 +7,6 @@ import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface UserDao {
-
-	 
-
 	@Select("select * from sys_user t where t.username = #{username}")
 	Map getUser(String username);
-
-	 
 }

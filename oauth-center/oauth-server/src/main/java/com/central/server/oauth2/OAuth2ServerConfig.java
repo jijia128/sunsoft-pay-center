@@ -26,6 +26,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.code.RandomValueAuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
@@ -50,6 +51,7 @@ public class OAuth2ServerConfig {
 
 	@Resource
 	private DataSource dataSource;
+
 	@Resource
 	private RedisTemplate<String, Object> redisTemplate;
 
@@ -77,6 +79,8 @@ public class OAuth2ServerConfig {
 	 * @author owen 624191343@qq.com
 	 * @version 创建时间：2017年11月12日 上午22:57:51 默认token存储在内存中
 	 * DefaultTokenServices默认处理
+	 * 认证服务器： 管理token信息（生成，存储等），客户端信息（存储），认证服务器访问权限
+	 *
 	 */
 	@Component
 	@Configuration
@@ -100,6 +104,7 @@ public class OAuth2ServerConfig {
 
 		@Autowired(required = false)
 		private JwtTokenStore jwtTokenStore;
+
 		@Autowired(required = false)
 		private JwtAccessTokenConverter jwtAccessTokenConverter;
 
@@ -132,15 +137,23 @@ public class OAuth2ServerConfig {
 			if (jwtAccessTokenConverter != null) {
 				endpoints.accessTokenConverter(jwtAccessTokenConverter);
 			}
-
 			endpoints.authorizationCodeServices(authorizationCodeServices);
-
 			endpoints.exceptionTranslator(webResponseExceptionTranslator);
-
 		}
 
-		// 配置应用名称 应用id
-		// 配置OAuth2的客户端相关信息
+
+		/**
+		 * 	配置应用名称 应用id
+		 * 	配置OAuth2的客户端相关信息
+		 * 	ClientDetailsServiceConfigurer 类可以配置多种实现，能够使用内存或 JDBC 方式实现获取已注册的客户端详情
+		 * clientId：客户端标识 ID
+		 * secret：客户端安全码
+		 * scope：客户端访问范围，默认为空则拥有全部范围
+		 * authorizedGrantTypes：客户端使用的授权类型，默认为空
+		 * authorities：客户端可使用的权限
+		 * @param clients
+		 * @throws Exception
+		 */
 		@Override
 		public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
@@ -164,9 +177,9 @@ public class OAuth2ServerConfig {
 		}
 
 		// 对应于配置AuthorizationServer安全认证的相关信息，创建ClientCredentialsTokenEndpointFilter核心过滤器
+		//用来配置令牌端点(Token Endpoint)的安全约束.
 		@Override
 		public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-
 			security.tokenKeyAccess("permitAll()") /// url:/oauth/token_key,exposes
 					/// public key for token
 					/// verification if using
@@ -182,6 +195,9 @@ public class OAuth2ServerConfig {
 
 	}
 
+	/**
+	 * 资源服务器：定义资源的访问权限
+	 */
 	@Configuration
 	@EnableResourceServer
 	@EnableConfigurationProperties(PermitUrlProperties.class)
@@ -195,6 +211,11 @@ public class OAuth2ServerConfig {
 			web.ignoring().antMatchers("/health");
 			web.ignoring().antMatchers("/oauth/user/token");
 			web.ignoring().antMatchers("/oauth/client/token");
+		}
+
+		@Override
+		public void configure(ResourceServerSecurityConfigurer resources) {
+			resources.resourceId(DEMO_RESOURCE_ID).stateless(true);
 		}
 
 		@Override

@@ -23,7 +23,6 @@ public class RedisAuthorizationCodeServices extends RandomValueAuthorizationCode
 
 	private RedisTemplate<String,Object> redisTemplate ;
 
-	
 	public RedisTemplate<String, Object> getRedisTemplate() {
 		return redisTemplate;
 	}

@@ -23,13 +23,13 @@ import com.central.autoconfigure.port.PortApplicationEnvironmentPreparedEventLis
 public class AuthServer {
 	
 	public static void main(String[] args) {
-//		固定端口启动
-//		SpringApplication.run(OpenAuthServerApp.class, args);
+		//	固定端口启动
+		SpringApplication.run(AuthServer.class, args);
 		
 		//随机端口启动
-		SpringApplication app = new SpringApplication(AuthServer.class);
-        app.addListeners(new PortApplicationEnvironmentPreparedEventListener());
-        app.run(args);
+//			SpringApplication app = new SpringApplication(AuthServer.class);
+//        app.addListeners(new PortApplicationEnvironmentPreparedEventListener());
+//        app.run(args);
 		
 	}
 

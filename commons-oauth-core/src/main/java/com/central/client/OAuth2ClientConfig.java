@@ -25,7 +25,9 @@ import com.central.model.properties.PermitUrlProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * @author 作者 owen E-mail: 624191343@qq.com
+ * 资源服务器
+ *
+ * @author 作者 Derek
  * @version 创建时间：2017年11月12日 上午22:57:51
  */
 @Component
@@ -48,11 +50,13 @@ public class OAuth2ClientConfig extends ResourceServerConfigurerAdapter{
 
 	@Autowired(required = false)
 	private JwtTokenStore jwtTokenStore;
+
 	@Autowired(required = false)
 	private JwtAccessTokenConverter jwtAccessTokenConverter;
 
 	@Autowired
 	private AuthenticationEntryPoint authenticationEntryPoint;
+
 	@Autowired
 	private AuthenticationFailureHandler authenticationFailureHandler;
 
@@ -61,9 +65,13 @@ public class OAuth2ClientConfig extends ResourceServerConfigurerAdapter{
 
 	@Autowired
 	private OAuth2WebSecurityExpressionHandler expressionHandler;
+
 	@Autowired
 	private OAuth2AccessDeniedHandler oAuth2AccessDeniedHandler;
 
+	/**
+	 * 不需要权限验证的URL
+	 */
 	@Autowired
 	private PermitUrlProperties permitUrlProperties;
 
@@ -80,12 +88,9 @@ public class OAuth2ClientConfig extends ResourceServerConfigurerAdapter{
 			resources.tokenStore(redisTokenStore);
 		}
 		resources.stateless(true);
-
 		resources.authenticationEntryPoint(authenticationEntryPoint);
-
 		resources.expressionHandler(expressionHandler);
 		resources.accessDeniedHandler(oAuth2AccessDeniedHandler);
-
 	}
 
 	@Override
