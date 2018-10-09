@@ -23,5 +23,4 @@ public interface UserClient {
     @GetMapping(value = "/users-anon/login", params = "username")
     LoginAppUser findByUsername(@RequestParam("username") String username);
 
-    
 }

@@ -79,24 +79,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		//关闭跨域访问安全限制功能
 		http.csrf().disable();
-
-		http.authorizeRequests().antMatchers( permitUrlProperties.getHttp_urls() ).permitAll()
+		//设置系统允许的URL
+		http.authorizeRequests().antMatchers(permitUrlProperties.getHttp_urls() ).permitAll()
 				.anyRequest().authenticated();
-		http.formLogin().loginPage("/login.html").loginProcessingUrl("/user/login")
-				.successHandler(authenticationSuccessHandler).failureHandler(authenticationFailureHandler);
+		//设置登录页面，登录处理地址，成功，失败的处理方法
+		http.formLogin()
+				.loginPage("/login.html")
+				.loginProcessingUrl("/user/login")
+				.successHandler(authenticationSuccessHandler)
+				.failureHandler(authenticationFailureHandler);
 
 		// 基于密码 等模式可以无session,不支持授权码模式
 		if (authenticationEntryPoint != null) {
 			http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
 			http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
 		} else {
 			// 授权码模式单独处理，需要session的支持，此模式可以支持所有oauth2的认证
 			http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
 		}
-
-		http.logout().logoutUrl("/user/logout").clearAuthentication(true)
+		//设置退出系统地址
+		http.logout()
+				.logoutUrl("/user/logout")
+				.clearAuthentication(true)
 				.logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler())
 				.addLogoutHandler(oauthLogoutHandler);
 

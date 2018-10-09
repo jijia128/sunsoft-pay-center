@@ -12,6 +12,23 @@
     <link rel="stylesheet" href="assets/libs/zTree/css/metroStyle/metroStyle.css"/>
     <!-- 自定义主题，使用EasyWeb主题生成器生成 -->
     <link rel="stylesheet" href="assets/css/theme-blue.css"/>
+    <script src="assets/libs/jquery-3.2.1.min.js"></script>
+    <script>
+
+        $(function(){
+            $.ajax({
+                type: "GET",
+                url: "http://127.0.0.1:9200/api-test/open/user/1",
+                data: {},
+                dataType: "json",
+                success: function(data){
+                    var html = "无需权限：<br/>用户名称："+data.username +"<br/>用户昵称："+data.nickname;
+                    $("#user-div").html(html)
+                }
+            });
+        });
+
+    </script>
 </head>
 
 <body class="layui-layout-body">
@@ -94,7 +111,11 @@
             </div>
         </div>
     </div>
+    <div id="user-div"  class="layui-container">
 
+
+
+    </div>
 </div>
 
 

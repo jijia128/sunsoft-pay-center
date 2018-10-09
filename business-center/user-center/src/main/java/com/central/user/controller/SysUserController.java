@@ -72,6 +72,15 @@ public class SysUserController {
         return appUserService.findByUsername(username);
     }
 
+    /**
+     * 用户注册
+     * @param sysUser
+     * @return
+     */
+    @PostMapping("/users/register")
+    public Result register(@RequestBody SysUser sysUser) {
+        return  appUserService.saveOrUpdate(sysUser);
+    }
 
 
     @PreAuthorize("hasAuthority('user:get/users/{id}')")

@@ -15,16 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 	private static final Logger logger = LoggerFactory.getLogger(TestController.class);
-	
 	@Resource
 	private RedisTemplate< String, Object> redisTemplate ;
-	
-	 
-
 	@GetMapping("/test111")
 	public String hello() {
 		return "hello";
 	}
-
-	 
 }

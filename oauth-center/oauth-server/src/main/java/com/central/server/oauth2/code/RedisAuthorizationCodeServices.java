@@ -37,10 +37,7 @@ public class RedisAuthorizationCodeServices extends RandomValueAuthorizationCode
 	 */
 	@Override
 	protected void store(String code, OAuth2Authentication authentication) {
-		
 		redisTemplate.opsForValue().set(redisKey(code), authentication, 10, TimeUnit.MINUTES);
-		
-		 
 	}
 
 	@Override
