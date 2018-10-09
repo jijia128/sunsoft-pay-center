@@ -338,30 +338,21 @@ public class OAuth2Controller {
 		}
 	}
 
-	
 	@ApiOperation(value = "获取token信息")
 	@PostMapping(value = "/oauth/get/token", params = "access_token")
 	public OAuth2AccessToken getTokenInfo(String access_token) {
-		
 		//拿到当前用户信息
-    	Authentication user = SecurityContextHolder.getContext()
-                .getAuthentication();
-		
+    	Authentication user = SecurityContextHolder.getContext().getAuthentication();
 		if(user!=null){
 			if(user instanceof OAuth2Authentication){
 				Authentication athentication = (Authentication)user;
 				OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) athentication.getDetails() ;
 			}
-			
 		}
 		OAuth2AccessToken accessToken = tokenStore.readAccessToken(access_token);
-		
 		return accessToken ;
-		
 	}
 
-	
-	
 	/**
 	 * 当前登陆用户信息
 	 * security获取当前登录用户的方法是SecurityContextHolder.getContext().getAuthentication()
@@ -374,11 +365,7 @@ public class OAuth2Controller {
 		Map<String, Object> userInfo = new HashMap<>();
 		userInfo.put("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		logger.debug("认证详细信息:" + SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
-
-
-
 		List<SysPermission>  permissions = new ArrayList<>();
-
 		new ArrayList(SecurityContextHolder.getContext().getAuthentication().getAuthorities()).forEach(o -> {
 				SysPermission sysPermission = new SysPermission();
 				sysPermission.setPermission(o.toString());
@@ -387,11 +374,8 @@ public class OAuth2Controller {
 		);
 //		userInfo.put("authorities", AuthorityUtils.authorityListToSet(SecurityContextHolder.getContext().getAuthentication().getAuthorities()) );
 		userInfo.put("permissions", permissions);
-
 		userInfo.put("resp_code","200");
-
 		logger.info("返回信息:{}",userInfo);
-
 		return userInfo;
 	}
 	
@@ -399,22 +383,14 @@ public class OAuth2Controller {
 	@PostMapping("/oauth/token/list")
 	public PageResult<HashMap<String, String>> getUserTokenInfo(@RequestParam Map<String, Object> params) throws Exception {
 		List<HashMap<String, String>> list = new ArrayList<>();
-
 		Set<String> keys = redisTemplate.keys("access:" + "*") ;
 		//根据分页参数获取对应数据
 		List<String> pages = findKeysForPage("access:" + "*", MapUtils.getInteger(params, "page"),MapUtils.getInteger(params, "limit"));
-
 		for (String page: pages) {
 			String key = page;
-
 			String accessToken = StringUtils.substringAfter(key, "access:");
-
 			OAuth2AccessToken token = tokenStore.readAccessToken(accessToken);
 			HashMap<String, String> map = new HashMap<String, String>();
-			 
-			
-			 
-			
 			try {
 				map.put("token_type", token.getTokenType());
 				map.put("token_value", token.getValue());
@@ -422,8 +398,7 @@ public class OAuth2Controller {
 			} catch (Exception e) {
 				 
 			}
-			
-			
+
 			OAuth2Authentication oAuth2Auth = tokenStore.readAuthentication(token);
 			Authentication authentication = oAuth2Auth.getUserAuthentication();
 
@@ -453,11 +428,9 @@ public class OAuth2Controller {
 
 			}
 			list.add(map);
-
 		}
 
 		return PageResult.<HashMap<String, String>>builder().data(list).code(0).count((long) keys.size()).build() ;
-
 	}
 
 	public List<String> findKeysForPage(String patternKey, int pageNum, int pageSize) {

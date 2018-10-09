@@ -128,13 +128,11 @@ public class RedisClientDetailsService extends JdbcClientDetailsService {
             return;
         }
         logger.info("将oauth_client_details全表刷入redis");
-
         List<ClientDetails> list = super.listClientDetails();
         if (CollectionUtils.isEmpty(list)) {
         	logger.error("oauth_client_details表数据为空，请检查");
             return;
         }
-
         list.parallelStream().forEach(client -> {
         	redisTemplate.boundHashOps(CACHE_CLIENT_KEY).put(client.getClientId(), JSONObject.toJSONString(client));
         });

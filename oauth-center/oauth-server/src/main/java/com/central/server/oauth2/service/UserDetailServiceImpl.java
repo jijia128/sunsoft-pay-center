@@ -24,7 +24,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-//      后续考虑集成spring socail,支持多种类型登录
+        // 后续考虑集成spring socail,支持多种类型登录
         LoginAppUser loginAppUser = userClient.findByUsername(username);
         if (loginAppUser == null) {
             throw new AuthenticationCredentialsNotFoundException("用户不存在");

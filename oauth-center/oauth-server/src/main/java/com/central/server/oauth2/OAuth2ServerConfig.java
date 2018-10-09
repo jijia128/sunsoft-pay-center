@@ -118,21 +118,17 @@ public class OAuth2ServerConfig {
 
 		// 配置身份认证器，配置认证方式，TokenStore，TokenGranter，OAuth2RequestFactory
 		public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-
 			if (jwtTokenStore != null) {
-				endpoints.tokenStore(jwtTokenStore).authenticationManager(authenticationManager)
-						.userDetailsService(userDetailsService); // 支持
+				endpoints.tokenStore(jwtTokenStore).authenticationManager(authenticationManager).userDetailsService(userDetailsService); // 支持
 				// password
 				// grant
 				// type;
 			} else if (redisTokenStore != null) {
-				endpoints.tokenStore(redisTokenStore).authenticationManager(authenticationManager)
-						.userDetailsService(userDetailsService); // 支持
+				endpoints.tokenStore(redisTokenStore).authenticationManager(authenticationManager).userDetailsService(userDetailsService); // 支持
 				// password
 				// grant
 				// type;
 			}
-
 			if (jwtAccessTokenConverter != null) {
 				endpoints.accessTokenConverter(jwtAccessTokenConverter);
 			}
