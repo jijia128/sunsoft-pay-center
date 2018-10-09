@@ -80,7 +80,6 @@ public class OAuth2ServerConfig {
 	 * @version 创建时间：2017年11月12日 上午22:57:51 默认token存储在内存中
 	 * DefaultTokenServices默认处理
 	 * 认证服务器： 管理token信息（生成，存储等），客户端信息（存储），认证服务器访问权限
-	 *
 	 */
 	@Component
 	@Configuration

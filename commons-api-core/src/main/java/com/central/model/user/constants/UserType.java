@@ -8,6 +8,7 @@ package com.central.model.user.constants;
  */
 public enum UserType {
 
+	BROWSER,
 	/**
 	 * 前端app用户
 	 */
