@@ -39,17 +39,18 @@ public class EurekaInstanceCanceledListener implements ApplicationListener {
                     }
                 });
             });
-
-
         }
+
         if (applicationEvent instanceof EurekaInstanceRegisteredEvent) {
             EurekaInstanceRegisteredEvent event = (EurekaInstanceRegisteredEvent) applicationEvent;
             log.debug("服务：" + event.getInstanceInfo().getAppName() + " 注册成功啦。。。");
         }
+
         if (applicationEvent instanceof EurekaInstanceRenewedEvent) {
             EurekaInstanceRenewedEvent event = (EurekaInstanceRenewedEvent) applicationEvent;
             log.debug("心跳检测服务：" + event.getInstanceInfo().getAppName() + "。。");
         }
+
         if (applicationEvent instanceof EurekaRegistryAvailableEvent) {
             log.debug("服务 Aualiable。。");
         }

@@ -25,6 +25,4 @@ public class UserServiceFallback implements TestUserClient {
         return new SysUser();
     }
 
-
-
 }

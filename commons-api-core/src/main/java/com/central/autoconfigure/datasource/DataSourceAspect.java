@@ -30,8 +30,6 @@ public class DataSourceAspect {
         } catch (Exception e) {
             logger.error("数据源[{}]不存在，使用默认数据源 > {}", ds.name(), point.getSignature());
         }
-
-
     }
 
     @After("@annotation(ds)")
