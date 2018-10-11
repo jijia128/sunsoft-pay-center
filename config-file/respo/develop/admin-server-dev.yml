@@ -13,7 +13,7 @@ spring:
     admin:  
       notify:  
         mail:  
-          enabled: false
+          enabled: true
           to: jijia128@163.com
           from: derek256@163.com
 #          ignore-changes: UNKNOWN:UP
