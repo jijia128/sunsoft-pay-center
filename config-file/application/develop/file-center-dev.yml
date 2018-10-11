@@ -94,6 +94,7 @@ spring:
     port: 6379    
     timeout: 3000
     database: 0
+    password: reds
   zipkin:
     base-url: http://127.0.0.1:11008
 ################### redis 单机版 end ##########################   
@@ -166,8 +167,8 @@ logging:
     org.hibernate: INFO
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
     org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
-#    com.neusoft: DEBUG     
-#    com.netflix: DEBUG                    #用于心跳检测输出的日志    
+    com.neusoft: DEBUG
+    com.netflix: DEBUG                    #用于心跳检测输出的日志
 
 
   
