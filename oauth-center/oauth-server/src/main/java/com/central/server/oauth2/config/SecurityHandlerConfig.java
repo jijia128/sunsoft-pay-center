@@ -69,16 +69,14 @@ public class SecurityHandlerConfig {
 	@Bean
 	public AuthenticationSuccessHandler loginSuccessHandler() {
 		return new SavedRequestAwareAuthenticationSuccessHandler() {
-
+			//Session 缓存
 			private RequestCache requestCache = new HttpSessionRequestCache();
 
 			@Override
 			public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 					Authentication authentication) throws IOException, ServletException {
-
 				super.onAuthenticationSuccess(request, response, authentication);
 				return;
-
 			}
 		};
 	}

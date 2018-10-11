@@ -227,7 +227,6 @@ public class OAuth2ServerConfig {
 							if (request.getParameter(OAuth2AccessToken.ACCESS_TOKEN) != null) {
 								return true;
 							}
-
 							// 头部的Authorization值以Bearer开头
 							String auth = request.getHeader("Authorization");
 							if (auth != null) {

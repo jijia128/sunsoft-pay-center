@@ -89,7 +89,6 @@ public class RedisClientDetailsService extends JdbcClientDetailsService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
         return clientDetails;
     }
 

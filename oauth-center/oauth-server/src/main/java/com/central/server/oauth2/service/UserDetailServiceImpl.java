@@ -23,7 +23,6 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
         // 后续考虑集成spring socail,支持多种类型登录
         LoginAppUser loginAppUser = userClient.findByUsername(username);
         if (loginAppUser == null) {
@@ -31,10 +30,6 @@ public class UserDetailServiceImpl implements UserDetailsService {
         } else if (!loginAppUser.isEnabled()) {
             throw new DisabledException("用户已作废");
         }
-
         return loginAppUser;
     }
-
-
-     
 }
