@@ -21,7 +21,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -49,6 +48,14 @@
 			<artifactId>swagger-bootstrap-ui</artifactId>
 			<version>1.6</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+
 	</dependencies>
 
 	<!-- 形成带第三方jar包的可执行jar包，jar包目录结构如下 application.properties lib META-INF mybatis
@@ -58,6 +65,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<fork>true</fork>
+				</configuration>
 				<executions>
 					<execution>
 						<goals>
@@ -67,9 +77,7 @@
 				</executions>
 			</plugin>
 
-
-			<!-- 首先加入pom ${docker.image.prefix} ： 这个是你的dockerhub注册上面的名字 gitgeek 这个是我注册的
-				${project.artifactId} ： 项目的名称 dockerDirectory ： dockerfile的文件路径 -->
+			<!-- 首先加入pom ${docker.image.prefix} ： 这个是你的dockerhub注册上面的名字 gitgeek 这个是我注册的 ${project.artifactId} ： 项目的名称 dockerDirectory ： dockerfile的文件路径 -->
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
