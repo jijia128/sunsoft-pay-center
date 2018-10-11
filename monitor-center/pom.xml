@@ -9,5 +9,6 @@
   <packaging>pom</packaging>
   <modules>
   	<module>admin-server</module>
+    <module>zipkin-center</module>
   </modules>
 </project>
