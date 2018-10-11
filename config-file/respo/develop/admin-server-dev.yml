@@ -29,7 +29,7 @@ spring:
   mail:
     host: smtp.163.com
     username: derek256@163.com
-    password: derek123
+    password: derek256
     properties:
         mail.smtp.auth : true
         mail.smtp.timeout : 2000
