@@ -54,13 +54,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
+		//健康监控
+		web.ignoring().antMatchers("/health");
+		//swagger访问
 		web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security", "/swagger-ui.html", "/webjars/**", "/doc.html", "/login.html");
+		//静态文件
 		web.ignoring().antMatchers("/js/**");
 		web.ignoring().antMatchers("/css/**");
-		web.ignoring().antMatchers("/health");
+		web.ignoring().antMatchers("/assets/js/**");
+		web.ignoring().antMatchers("/assets/css/**");
+		web.ignoring().antMatchers("/assets/images/**");
 		// 忽略登录界面
 		web.ignoring().antMatchers("/login.html");
 		web.ignoring().antMatchers("/hello.html");
+		//Token
 		web.ignoring().antMatchers("/oauth/user/token");
 		web.ignoring().antMatchers("/oauth/client/token");
 	}
