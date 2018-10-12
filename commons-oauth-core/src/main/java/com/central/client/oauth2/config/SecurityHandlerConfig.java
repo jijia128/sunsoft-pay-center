@@ -36,8 +36,7 @@ public class SecurityHandlerConfig {
 
 	@Resource 
 	private ObjectMapper objectMapper ; //springmvc启动时自动装配json处理类
-	
-	
+
 	/**
 	 * 登陆失败
 	 * 

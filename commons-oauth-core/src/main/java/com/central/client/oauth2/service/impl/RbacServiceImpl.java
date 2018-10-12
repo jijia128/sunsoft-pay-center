@@ -3,33 +3,79 @@
  */
 package com.central.client.oauth2.service.impl;
 
-import javax.servlet.http.HttpServletRequest;
-
+import com.central.client.oauth2.dao.ServiceDao;
+import com.central.client.oauth2.service.RbacService;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.util.AntPathMatcher;
 
-import com.central.client.oauth2.service.RbacService;
- 
-/** 
-* @author 作者 owen E-mail: 624191343@qq.com
-* @version 创建时间：2018年4月5日 下午19:52:21
-* 类说明 
-*   @param request        HttpServletRequest
-*   @param authentication 认证信息
-*   @return 是否有权限
-*/
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * API 级别权限认证
+ *
+ * @author 作者 owen E-mail: 624191343@qq.com
+ * @version 创建时间：2017年12月4日 下午5:32:29
+ * 类说明
+ */
 
 @Service("rbacService")
 public class RbacServiceImpl implements RbacService {
 
-	private AntPathMatcher antPathMatcher = new AntPathMatcher();
+    @Resource
+    private ServiceDao serviceDao;
 
-	@Override
-	public boolean hasPermission(HttpServletRequest request, Authentication authentication) {
-		Object principal = authentication.getPrincipal();
+    private AntPathMatcher antPathMatcher = new AntPathMatcher();
 
-		boolean hasPermission = true;
+    /**
+     * @param request        HttpServletRequest
+     * @param authentication 认证信息
+     * @return 是否有权限
+     */
+    @Override
+    public boolean hasPermission(HttpServletRequest request, Authentication authentication) {
+
+        Authentication user = SecurityContextHolder.getContext().getAuthentication();
+
+        if (user != null) {
+
+            if (user instanceof OAuth2Authentication) {
+
+                OAuth2Authentication athentication = (OAuth2Authentication) user;
+
+                String clientId = athentication.getOAuth2Request().getClientId();
+
+                Map map = serviceDao.getClient(clientId);
+
+                if (map == null) {
+                    return false;
+                } else {
+                    List<Map> list = serviceDao.listByClientId(Long.valueOf(String.valueOf(map.get("id"))));
+
+                    for (Iterator<Map> it = list.iterator(); it.hasNext(); ) {
+                        Map temp = it.next();
+
+                        if (antPathMatcher.match(request.getRequestURI(), String.valueOf(temp.get("href")))) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+
+
+            }
+
+        }
+
+
+        //TODO 目前都是true
+        boolean hasPermission = true;
 
 		
 		

@@ -2,6 +2,7 @@ package com.central.client.oauth2.authorize;
 
 import java.util.List;
 
+import com.central.client.oauth2.authorize.provider.AuthorizeConfigProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;

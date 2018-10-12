@@ -1,28 +1,20 @@
 package com.central.client.oauth2.filter;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import com.netflix.zuul.ZuulFilter;
+import com.netflix.zuul.context.RequestContext;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.stereotype.Component;
 
-import com.alibaba.fastjson.JSON;
-
-import com.netflix.discovery.CommonConstants;
-import com.netflix.zuul.ZuulFilter;
-import com.netflix.zuul.context.RequestContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by owen on 2017/9/10.
  */
 @Component
 public class AccessFilter extends ZuulFilter {
-
-     
 
     @Override
     public String filterType() {
@@ -47,8 +39,7 @@ public class AccessFilter extends ZuulFilter {
         try {
         	
         	//解决zuul token传递问题
-        	Authentication user = SecurityContextHolder.getContext()
-                    .getAuthentication();
+        	Authentication user = SecurityContextHolder.getContext().getAuthentication();
     		
     		
     		if(user!=null){

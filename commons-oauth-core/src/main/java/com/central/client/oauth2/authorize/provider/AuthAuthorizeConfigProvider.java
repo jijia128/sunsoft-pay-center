@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.stereotype.Component;
 
-import com.central.client.oauth2.authorize.AuthorizeConfigProvider;
 import com.central.model.properties.PermitUrlProperties;
 
 /**
@@ -23,14 +22,17 @@ public class AuthAuthorizeConfigProvider implements AuthorizeConfigProvider {
 	@Autowired(required = false)
 	private PermitUrlProperties permitUrlProperties;
 
+	/**
+	 *
+	 * @param config
+	 * @return boolean
+	 */
 	@Override
 	public boolean config(ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry config) {
-
 		// 免token登录设置
 		config.antMatchers(permitUrlProperties.getOauth_urls()).permitAll();
 		//前后分离时需要带上
 		config.antMatchers(HttpMethod.OPTIONS).permitAll();
-        
 		return true;
 	}
 
