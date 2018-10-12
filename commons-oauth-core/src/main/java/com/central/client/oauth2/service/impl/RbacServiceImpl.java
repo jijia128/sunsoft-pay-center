@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.central.client.oauth2.service.impl;
 
 import com.central.client.oauth2.dao.ServiceDao;

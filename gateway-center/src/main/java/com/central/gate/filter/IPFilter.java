@@ -1,4 +1,4 @@
-package com.central.client.oauth2.filter;
+package com.central.gate.filter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
