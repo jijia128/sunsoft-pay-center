@@ -44,7 +44,7 @@ public class SysPermissionController {
 	/**
 	 * 删除权限标识
 	 * 参考 /permissions/1
-	 * @param id
+	 * @param id 权限ID
 	 */
 	@PreAuthorize("hasAuthority('permission:delete/permissions/{id}')")
 	@ApiOperation(value = "后台管理删除权限标识")
@@ -63,7 +63,7 @@ public class SysPermissionController {
 	/**
 	 * 查询所有的权限标识
 	 * 参考 ?start=0&length=10
-	 * @return
+	 * @return PageResult
 	 */
 	@PreAuthorize("hasAuthority('permission:get/permissions')")
 	@ApiOperation(value = "后台管理查询所有的权限标识")
@@ -78,8 +78,8 @@ public class SysPermissionController {
 
 	/**
 	 * 权限新增或者更新
-	 * @param sysPermission
-	 * @return
+	 * @param sysPermission //权限资源
+	 * @return Result 返回结果
 	 */
 	@PreAuthorize("hasAnyAuthority('permission:put/permissions','permission:post/permissions')")
 	@PostMapping("/permissions/saveOrUpdate")
