@@ -35,12 +35,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private AuthenticationSuccessHandler authenticationSuccessHandler;
+
 	@Autowired
 	private AuthenticationFailureHandler authenticationFailureHandler;
+
 	// @Autowired
 	// private LogoutSuccessHandler logoutSuccessHandler;
+
 	@Autowired(required = false)
 	private AuthenticationEntryPoint authenticationEntryPoint;
+
 	@Autowired
 	private UserDetailsService userDetailsService;
 
@@ -49,6 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private OauthLogoutHandler oauthLogoutHandler;
+
 	@Autowired
 	private PermitUrlProperties permitUrlProperties ;
 
@@ -59,11 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//swagger访问
 		web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security", "/swagger-ui.html", "/webjars/**", "/doc.html", "/login.html");
 		//静态文件
-		web.ignoring().antMatchers("/js/**");
-		web.ignoring().antMatchers("/css/**");
-		web.ignoring().antMatchers("/assets/js/**");
-		web.ignoring().antMatchers("/assets/css/**");
-		web.ignoring().antMatchers("/assets/images/**");
+		web.ignoring().antMatchers("/assets/**");
 		// 忽略登录界面
 		web.ignoring().antMatchers("/login.html");
 		web.ignoring().antMatchers("/hello.html");

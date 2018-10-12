@@ -141,7 +141,6 @@ hystrix:
           thread:
             timeoutInMilliseconds: 16000
 
-
 eureka:
   client:
     healthcheck:

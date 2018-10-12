@@ -55,17 +55,11 @@ public class RedisTemplateTokenStore implements TokenStore {
 		this.redisTemplate = redisTemplate;
 	}
 
-
 	private AuthenticationKeyGenerator authenticationKeyGenerator = new DefaultAuthenticationKeyGenerator();
-
-
-
 
 	public void setAuthenticationKeyGenerator(AuthenticationKeyGenerator authenticationKeyGenerator) {
 		this.authenticationKeyGenerator = authenticationKeyGenerator;
 	}
-
-
 
 	public OAuth2AccessToken getAccessToken(OAuth2Authentication authentication) {
 		String key = authenticationKeyGenerator.extractKey(authentication);
@@ -96,7 +90,6 @@ public class RedisTemplateTokenStore implements TokenStore {
 	}
 
 	public void storeAccessToken(OAuth2AccessToken token, OAuth2Authentication authentication) {
-
 
 		this.redisTemplate.opsForValue().set(ACCESS+ token.getValue(), token);
 		this.redisTemplate.opsForValue().set(AUTH +token.getValue(), authentication);
@@ -137,7 +130,6 @@ public class RedisTemplateTokenStore implements TokenStore {
 
 				}
 			}
-
 
 		}
 	}

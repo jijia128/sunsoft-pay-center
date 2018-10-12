@@ -68,11 +68,9 @@ public class PermitUrlProperties {
 	/**
      * 需要放开权限的url
      *
-     * @param urls 自定义的url
+     * @param oauth_urls 自定义的url
      * @return 自定义的url和监控中心需要访问的url集合
      */
-	
-
 	public void setOauth_urls(String[] oauth_urls) {
 		this.oauth_urls = oauth_urls;
 	}

@@ -26,7 +26,6 @@ public class FeignInterceptorConf {
 	@Bean
 	public RequestInterceptor requestInterceptor() {
 		RequestInterceptor requestInterceptor = new RequestInterceptor() {
-
 			@Override
 			public void apply(RequestTemplate template) {
 				Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -40,7 +39,6 @@ public class FeignInterceptorConf {
 				}
 			}
 		};
-
 		return requestInterceptor;
 	}
 }

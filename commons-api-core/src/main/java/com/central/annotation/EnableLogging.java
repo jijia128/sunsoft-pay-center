@@ -10,14 +10,11 @@ import org.springframework.context.annotation.Import;
 
 import com.central.autoconfigure.LoggingConfigurationSelector;
 
-
-
 /**
  * 启动日志框架支持
  * @author owen
  * @create 2017年7月2日
  */
-
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented

@@ -1,7 +1,12 @@
 package com.central.client.bean;
 
-
+/**
+ * @Description TODO
+ * @Author Derek
+ * @Date 2018/10/12 14:14
+ **/
 public class User {
+
     private String username;
 
     private int age;

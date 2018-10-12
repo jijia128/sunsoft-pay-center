@@ -46,8 +46,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Configuration
 public class SecurityHandlerConfig {
 
+	// springmvc启动时自动装配json处理类
 	@Resource
-	private ObjectMapper objectMapper; // springmvc启动时自动装配json处理类
+	private ObjectMapper objectMapper;
 
 //	@Autowired
 //	private AuthorizationServerTokenServices authorizationServerTokenServices;
@@ -69,9 +70,9 @@ public class SecurityHandlerConfig {
 	@Bean
 	public AuthenticationSuccessHandler loginSuccessHandler() {
 		return new SavedRequestAwareAuthenticationSuccessHandler() {
-			//Session 缓存
+			//Session 缓存 跳转之前的URL
 			private RequestCache requestCache = new HttpSessionRequestCache();
-
+			// 认证成功后调用父类的处理方法
 			@Override
 			public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 					Authentication authentication) throws IOException, ServletException {
@@ -89,7 +90,6 @@ public class SecurityHandlerConfig {
 	@Bean
 	public AuthenticationFailureHandler loginFailureHandler() {
 		return new AuthenticationFailureHandler() {
-
 			@Override
 			public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 					AuthenticationException exception) throws IOException, ServletException {
