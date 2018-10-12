@@ -30,15 +30,13 @@
         <div class="layui-form-item">
             <label class="layui-form-label">角色名</label>
             <div class="layui-input-block">
-                <input name="name" placeholder="请输入角色名" type="text" class="layui-input" maxlength="20"
-                       lay-verify="required" required/>
+                <input name="name" placeholder="请输入角色名" type="text" class="layui-input" maxlength="50" lay-verify="required" required/>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">Code</label>
             <div class="layui-input-block">
-                <input name="code" placeholder="请输入Code" type="text" class="layui-input" maxlength="20"
-                       lay-verify="required" required />
+                <input name="code" placeholder="请输入Code" type="text" class="layui-input" maxlength="80" lay-verify="required" required />
             </div>
         </div>
         <div class="layui-form-item model-form-footer">
@@ -176,7 +174,7 @@
             layer.open({
                 type: 1,
                 title: '菜单管理',
-                area: ['600px', '500px'],
+                area: ['900px', '500px'],
                 offset: '120px',
                 content: '<ul id="treeMenu" class="ztree" style="padding: 25px 0px 20px 60px;"></ul>',
                 btn: ['保存', '关闭'],
@@ -243,7 +241,7 @@
             layer.open({
                 type: 1,
                 title: '权限管理',
-                area: ['600px', '500px'],
+                area: ['900px', '500px'],
                 offset: '120px',
                 content: '<ul id="treeAuth" class="ztree" style="padding: 25px 0px 20px 60px;"></ul>',
                 btn: ['保存', '关闭'],
