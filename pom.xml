@@ -13,7 +13,7 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<java.version>1.8</java.version>
 		<sharding-jdbc>2.0.3</sharding-jdbc>
-		<swagger.version>2.8.0</swagger.version>
+		<swagger.version>2.9.2</swagger.version>
 		<core.version>0.0.1-SNAPSHOT</core.version>
 		<swagger.m.version>1.0.4</swagger.m.version>
 		<docker.image.prefix>sunsoft</docker.image.prefix>

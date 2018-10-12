@@ -48,27 +48,23 @@ public class RbacServiceImpl implements RbacService {
             OAuth2Authentication athentication = (OAuth2Authentication) user;
             String clientId = athentication.getOAuth2Request().getClientId();
             Map map = serviceDao.getClient(clientId);
-
+            //客戶端不存在
             if (map == null) {
                 return false;
             }
-
             List<Map> list = serviceDao.listByClientId(Long.valueOf(String.valueOf(map.get("id"))));
+            if (list == null) {
+                return false;
+            }
             for (Iterator<Map> it = list.iterator(); it.hasNext(); ) {
                 Map temp = it.next();
                 if (antPathMatcher.match(request.getRequestURI(), String.valueOf(temp.get("href")))) {
                     return true;
                 }
             }
-            return false;
         }
 
-        //TODO 目前都是true
-        boolean hasPermission = true;
-
-		
-		
-		return hasPermission;
+        return false;
 	}
 
 }
