@@ -31,15 +31,13 @@
         <div class="layui-form-item">
             <label class="layui-form-label">权限标识</label>
             <div class="layui-input-block">
-                <input name="permission" placeholder="请输入权限标识" type="text" class="layui-input" maxlength="20"
-                       lay-verify="required" required/>
+                <input name="permission" placeholder="请输入权限标识" type="text" class="layui-input" maxlength="200" lay-verify="required" required/>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">名称</label>
             <div class="layui-input-block">
-                <input name="name" placeholder="请输入名称" type="text" class="layui-input" maxlength="20"
-                       lay-verify="required" required />
+                <input name="name" placeholder="请输入名称" type="text" class="layui-input" maxlength="50" lay-verify="required" required />
             </div>
         </div>
         <div class="layui-form-item model-form-footer">
@@ -151,8 +149,6 @@
             var key = $('#auth-edit-search').val();
             table.reload('auth-table', {where: {searchKey: key}});
         });
-
-
 
     });
 </script>
