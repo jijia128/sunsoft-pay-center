@@ -144,8 +144,6 @@ public class RedisTemplateTokenStore implements TokenStore {
 		return clientId + (userName==null ? "" : ":" + userName);
 	}
 
-
-
 	public void removeAccessToken(OAuth2AccessToken accessToken) {
 		removeAccessToken(accessToken.getValue());
 	}

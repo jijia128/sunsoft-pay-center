@@ -50,7 +50,6 @@ public class SysPermissionController {
 	@ApiOperation(value = "后台管理删除权限标识")
 	@DeleteMapping("/permissions/{id}")
 	public Result delete(@PathVariable Long id) {
-
 		try{
 			sysPermissionService.delete(id);
 			return  Result.succeed("操作成功");
@@ -58,7 +57,6 @@ public class SysPermissionController {
 			ex.printStackTrace();
 			return  Result.failed("操作失败");
 		}
-
 	}
 
 
@@ -104,12 +102,13 @@ public class SysPermissionController {
 	public List<Map<String, Object>> findAuthByRoleId(@PathVariable Long roleId) {
 		List<Map<String, Object>> authTrees = new ArrayList<>();
 		Set<Long> roleIds = new HashSet<Long>() {{ add(roleId); }};
-		Set<SysPermission> roleAuths = sysPermissionService.findByRoleIds(roleIds);//根据roleId获取对应的权限
-		PageResult<SysPermission> allAuths = sysPermissionService.findPermissions(null);//根据roleId获取对应的权限
-
-
+		//根据roleId获取对应的权限
+		Set<SysPermission> roleAuths = sysPermissionService.findByRoleIds(roleIds);
+		//根据roleId获取对应的权限
+		PageResult<SysPermission> allAuths = sysPermissionService.findPermissions(null);
+		//多个角色的权限
 		Map<Long,SysPermission> roleAuthsMap = roleAuths.stream().collect(Collectors.toMap(SysPermission::getId,SysPermission->SysPermission));
-
+		//解析权限
 		for (SysPermission sysPermission : allAuths.getData() ){
 			Map<String, Object> authTree = new HashMap<>();
 			authTree.put("id",sysPermission.getId());
@@ -121,7 +120,6 @@ public class SysPermissionController {
 			}
 			authTrees.add(authTree);
 		}
-
 		return authTrees;
 	}
 	/**

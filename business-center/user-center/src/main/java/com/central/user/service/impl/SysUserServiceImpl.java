@@ -185,12 +185,10 @@ public class SysUserServiceImpl implements SysUserService {
 				Set<Long> roleIds = sysRoles.parallelStream().map(r -> r.getId()).collect(Collectors.toSet());
 				Set<SysPermission> sysPermissions = sysPermissionService.findByRoleIds(roleIds);
 				if (!CollectionUtils.isEmpty(sysPermissions)) {
-					Set<String> permissions = sysPermissions.parallelStream().map(p -> p.getPermission())
-							.collect(Collectors.toSet());
-
-					loginAppUser.setPermissions(permissions);// 设置权限集合
+					Set<String> permissions = sysPermissions.parallelStream().map(p -> p.getPermission()).collect(Collectors.toSet());
+					// 设置权限集合
+					loginAppUser.setPermissions(permissions);
 				}
-
 			}
 
 			return loginAppUser;

@@ -37,29 +37,21 @@ public class AccessFilter extends ZuulFilter {
         HttpServletRequest request = ctx.getRequest();
        
         try {
-        	
-        	//解决zuul token传递问题
+        	//获取认证用户
         	Authentication user = SecurityContextHolder.getContext().getAuthentication();
-    		
-    		
-    		if(user!=null){
-    			
-    			if(user instanceof OAuth2Authentication){
-    				
-    				Authentication athentication = (Authentication)user;
-    				
-    				OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) athentication.getDetails() ;
-    				ctx.addZuulRequestHeader("Authorization", "bearer "+details.getTokenValue());
-    			}
-    			
+    		if(user==null){
+                return null;
     		}
-        	
+            //解决zuul token 传递问题
+            if(user instanceof OAuth2Authentication){
+                Authentication athentication = (Authentication)user;
+                OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) athentication.getDetails() ;
+                ctx.addZuulRequestHeader("Authorization", "bearer "+details.getTokenValue());
+            }
           
         } catch (Exception e) {
-           
+           e.printStackTrace();
         }
         return null;
     }
-
-     
 }
