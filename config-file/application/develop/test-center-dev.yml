@@ -1,5 +1,10 @@
 server:
   port: 7001   #固定端口
+  ssl:
+    key-store: classpath:keystore.p12
+    key-store-password: 123456
+    keyStoreType: PKCS12
+    keyAlias: tomcat
 #  port: ${randomServerPort.value[7000,7005]}  #随机端口
 management:
   endpoints:
