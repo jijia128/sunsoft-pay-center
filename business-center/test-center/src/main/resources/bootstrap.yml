@@ -11,4 +11,3 @@ spring:
 #      discovery:
 #        enabled: true
 #        service-id: config-center
-

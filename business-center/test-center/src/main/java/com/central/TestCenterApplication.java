@@ -28,22 +28,22 @@ public class TestCenterApplication {
 	
 	public static void main(String[] args) {
 		//	固定端口启动
-//			SpringApplication.run(TestCenterApplication.class, args);
+			SpringApplication.run(TestCenterApplication.class, args);
 		//随机端口启动
-		SpringApplication app = new SpringApplication(TestCenterApplication.class);
-        app.addListeners(new PortApplicationEnvironmentPreparedEventListener());
-        app.run(args);
+//		SpringApplication app = new SpringApplication(TestCenterApplication.class);
+//        app.addListeners(new PortApplicationEnvironmentPreparedEventListener());
+//        app.run(args);
 	}
 	//@Bean
-	public ServletWebServerFactory servletContainer() {
-		TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
-		tomcat.addAdditionalTomcatConnectors(createStandardConnector()); // 添加http
-		return tomcat;
-	}
+//	public ServletWebServerFactory servletContainer() {
+//		TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
+//		tomcat.addAdditionalTomcatConnectors(createStandardConnector()); // 添加http
+//		return tomcat;
+//	}
 	// 配置http
-	private Connector createStandardConnector() {
-		Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
-		connector.setPort(8446);
-		return connector;
-	}
+//	private Connector createStandardConnector() {
+//		Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
+//		connector.setPort(8446);
+//		return connector;
+//	}
 }
