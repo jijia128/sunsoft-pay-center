@@ -7,7 +7,7 @@ spring:
     config:
       label: develop
       profile: @spring.profiles.active@
-      uri: http://localhost:8888/
+      uri: https://localhost:8888/
 #      discovery:
 #        enabled: true
 #        service-id: config-center

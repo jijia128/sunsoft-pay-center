@@ -1,6 +1,10 @@
 server:
   port: 8888
-
+  ssl:
+    key-store: classpath:keystore.p12
+    key-store-password: 123456
+    keyStoreType: PKCS12
+    keyAlias: tomcat
 eureka:
   client:
     serviceUrl:
