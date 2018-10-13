@@ -1,10 +1,10 @@
 server:
   port: 8000
-#  ssl:
-#    key-store: classpath:keystore.p12
-#    key-store-password: 123456
-#    keyStoreType: PKCS12
-#    keyAlias: tomcat
+  ssl:
+    key-store: classpath:keystore.p12
+    key-store-password: 123456
+    keyStoreType: PKCS12
+    keyAlias: tomcat
 #  port: ${randomServerPort.value[8000,8005]}    #随机端口
 management:
   endpoints:
