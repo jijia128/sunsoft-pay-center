@@ -60,7 +60,6 @@
 			<version>${security-oauth2.version}</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-jwt -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-jwt</artifactId>
@@ -140,7 +139,6 @@
 			<version>1.0.4</version>
 		</dependency>
 		 
-		<!-- https://mvnrepository.com/artifact/com.aliyun.oss/aliyun-sdk-oss -->
 		<dependency>
 		    <groupId>com.aliyun.oss</groupId>
 		    <artifactId>aliyun-sdk-oss</artifactId>

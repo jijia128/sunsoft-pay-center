@@ -35,9 +35,15 @@
 		</dependency>
 		
 
-		<!--sharding-jdbc <dependency> <groupId>com.dangdang</groupId> <artifactId>sharding-jdbc-core</artifactId> 
-			<version>${sharding-jdbc}</version> </dependency> -->
-		<!-- https://mvnrepository.com/artifact/io.shardingjdbc/sharding-jdbc-core -->
+		<!--sharding-jdbc -->
+		<!--
+		<dependency>
+			<groupId>com.dangdang</groupId>
+			<artifactId>sharding-jdbc-core</artifactId>
+			<version>${sharding-jdbc}</version>
+		</dependency>
+		-->
+
 		<dependency>
 			<groupId>io.shardingjdbc</groupId>
 			<artifactId>sharding-jdbc-core</artifactId>
