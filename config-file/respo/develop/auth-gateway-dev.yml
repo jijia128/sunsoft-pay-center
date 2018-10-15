@@ -1,10 +1,10 @@
 server:
   port: 9200
-  ssl:
-    key-store: classpath:keystore.p12
-    key-store-password: 123456
-    keyStoreType: PKCS12
-    keyAlias: tomcat
+#  ssl:
+#    key-store: classpath:keystore.p12
+#    key-store-password: 123456
+#    key-store-type: PKCS12
+#    key-alias: tomcat
 management:
   endpoints:
     web:
@@ -216,7 +216,7 @@ swagger:
 eureka:
   client:
     serviceUrl:
-      defaultZone: https://127.0.0.1:1111/eureka/
+      defaultZone: http://127.0.0.1:1111/eureka/
       #http://192.168.3.170:1111/eureka,http://192.168.3.171:1111/eureka,http://192.168.3.173:1111/eureka
       #http://130.75.131.243:1111/eureka/,http://130.75.131.244:1111/eureka/,http://130.75.131.245:1111/eureka/   
   instance:
