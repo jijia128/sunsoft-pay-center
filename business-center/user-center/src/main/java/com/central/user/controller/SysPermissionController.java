@@ -96,6 +96,11 @@ public class SysPermissionController {
 		}
 	}
 
+	/**
+	 * 根据roleId获取对应的权限
+	 * @param roleId 角色ID
+	 * @return List
+	 */
 	@PreAuthorize("hasAuthority('permission:get/permissions/{roleId}/permissions')")
 	@ApiOperation(value = "根据roleId获取对应的权限")
 	@GetMapping("/permissions/{roleId}/permissions")
@@ -133,16 +138,5 @@ public class SysPermissionController {
 		sysPermissionService.setAuthToRole(sysPermission.getRoleId(),sysPermission.getAuthIds());
 		return Result.succeed("操作成功");
 	}
-
-
-
-
-
-
-
-
-
-
-
 
 }

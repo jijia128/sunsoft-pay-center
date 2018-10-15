@@ -41,10 +41,12 @@
 			<artifactId>spring-session-data-redis</artifactId>
 		</dependency>
 
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.cloud</groupId>-->
-			<!--<artifactId>spring-cloud-starter-feign</artifactId>-->
-		<!--</dependency>-->
+		<!--
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-feign</artifactId>
+		</dependency>
+		-->
 
 	  <!-- jjwt 认证-->
 	  <dependency>
@@ -52,7 +54,6 @@
 		  <artifactId>jjwt</artifactId>
 		  <version>0.9.1</version>
 	  </dependency>
-
 
 	  <dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -87,7 +88,6 @@
 				</configuration>
 			</plugin>
 
-
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -99,7 +99,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
 
 			<!-- 首先加入pom ${docker.image.prefix} ： 这个是你的dockerhub注册上面的名字 gitgeek 这个是我注册的 
 				${project.artifactId} ： 项目的名称 dockerDirectory ： dockerfile的文件路径 -->

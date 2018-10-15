@@ -35,7 +35,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 
-import com.central.model.properties.PermitUrlProperties;
+import com.central.server.oauth2.properties.PermitUrlProperties;
 import com.central.server.oauth2.client.RedisClientDetailsService;
 import com.central.server.oauth2.code.RedisAuthorizationCodeServices;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -55,7 +55,8 @@ public class OAuth2ServerConfig {
 	@Resource
 	private RedisTemplate<String, Object> redisTemplate;
 
-	@Bean // 声明 ClientDetails实现
+	// 声明 ClientDetails实现
+	@Bean
 	@ConditionalOnProperty(prefix = "security.oauth2.token.store", name = "type", havingValue = "redis", matchIfMissing = true)
 	public RedisClientDetailsService clientDetailsService() {
 		RedisClientDetailsService clientDetailsService = new RedisClientDetailsService(dataSource);
@@ -63,216 +64,11 @@ public class OAuth2ServerConfig {
 		return clientDetailsService;
 	}
 
-	// @Bean
-	// public ApprovalStore approvalStore() {
-	// return new JdbcApprovalStore(dataSource);
-	// }
-
 	@Bean
 	public RandomValueAuthorizationCodeServices authorizationCodeServices() {
 		RedisAuthorizationCodeServices redisAuthorizationCodeServices = new RedisAuthorizationCodeServices();
 		redisAuthorizationCodeServices.setRedisTemplate(redisTemplate);
 		return redisAuthorizationCodeServices;
-	}
-
-	/**
-	 * @author owen 624191343@qq.com
-	 * @version 创建时间：2017年11月12日 上午22:57:51 默认token存储在内存中
-	 * DefaultTokenServices默认处理
-	 * 认证服务器： 管理token信息（生成，存储等），客户端信息（存储），认证服务器访问权限
-	 */
-	@Component
-	@Configuration
-	@EnableAuthorizationServer
-	@AutoConfigureAfter(AuthorizationServerEndpointsConfigurer.class)
-	public class UnieapAuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
-		/**
-		 * 注入authenticationManager 来支持 password grant type
-		 */
-		@Autowired
-		private AuthenticationManager authenticationManager;
-
-		@Resource
-		private ObjectMapper objectMapper; // springmvc启动时自动装配json处理类
-
-		@Autowired
-		private UserDetailsService userDetailsService;
-
-		@Autowired(required = false)
-		private RedisTemplateTokenStore redisTokenStore;
-
-		@Autowired(required = false)
-		private JwtTokenStore jwtTokenStore;
-
-		@Autowired(required = false)
-		private JwtAccessTokenConverter jwtAccessTokenConverter;
-
-		@Autowired
-		private WebResponseExceptionTranslator webResponseExceptionTranslator;
-
-		@Autowired
-		private RedisClientDetailsService clientDetailsService;
-
-		@Autowired(required = false)
-		private RandomValueAuthorizationCodeServices authorizationCodeServices;
-
-		// 配置身份认证器，配置认证方式，TokenStore，TokenGranter，OAuth2RequestFactory
-		public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-			if (jwtTokenStore != null) {
-				endpoints.tokenStore(jwtTokenStore).authenticationManager(authenticationManager).userDetailsService(userDetailsService); // 支持
-				// password
-				// grant
-				// type;
-			} else if (redisTokenStore != null) {
-				endpoints.tokenStore(redisTokenStore).authenticationManager(authenticationManager).userDetailsService(userDetailsService); // 支持
-				// password
-				// grant
-				// type;
-			}
-			if (jwtAccessTokenConverter != null) {
-				endpoints.accessTokenConverter(jwtAccessTokenConverter);
-			}
-			endpoints.authorizationCodeServices(authorizationCodeServices);
-			endpoints.exceptionTranslator(webResponseExceptionTranslator);
-		}
-
-
-		/**
-		 * 	配置应用名称 应用id
-		 * 	配置OAuth2的客户端相关信息
-		 * 	ClientDetailsServiceConfigurer 类可以配置多种实现，能够使用内存或 JDBC 方式实现获取已注册的客户端详情
-		 * clientId：客户端标识 ID
-		 * secret：客户端安全码
-		 * scope：客户端访问范围，默认为空则拥有全部范围
-		 * authorizedGrantTypes：客户端使用的授权类型，默认为空
-		 * authorities：客户端可使用的权限
-		 * @param clients
-		 * @throws Exception
-		 */
-		@Override
-		public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-
-			// if(clientDetailsService!=null){
-			// clients.withClientDetails(clientDetailsService);
-			// }else{
-			// clients.inMemory().withClient("neusoft1").secret("neusoft1")
-			// .authorizedGrantTypes("authorization_code", "password",
-			// "refresh_token").scopes("all")
-			// .resourceIds(SERVER_RESOURCE_ID).accessTokenValiditySeconds(1200)
-			// .refreshTokenValiditySeconds(50000)
-			// .and().withClient("neusoft2").secret("neusoft2")
-			// .authorizedGrantTypes("authorization_code", "password",
-			// "refresh_token").scopes("all")
-			// .resourceIds(SERVER_RESOURCE_ID).accessTokenValiditySeconds(1200)
-			// .refreshTokenValiditySeconds(50000)
-			// ;
-			// }
-			clients.withClientDetails(clientDetailsService);
-			clientDetailsService.loadAllClientToCache();
-		}
-
-		// 对应于配置AuthorizationServer安全认证的相关信息，创建ClientCredentialsTokenEndpointFilter核心过滤器
-		//用来配置令牌端点(Token Endpoint)的安全约束.
-		@Override
-		public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-			security.tokenKeyAccess("permitAll()") /// url:/oauth/token_key,exposes
-					/// public key for token
-					/// verification if using
-					/// JWT tokens
-					.checkTokenAccess("isAuthenticated()") // url:/oauth/check_token
-					// allow check token
-					.allowFormAuthenticationForClients();
-
-			// security.allowFormAuthenticationForClients();
-			//// security.tokenKeyAccess("permitAll()");
-			// security.tokenKeyAccess("isAuthenticated()");
-		}
-
-	}
-
-	/**
-	 * 资源服务器：定义资源的访问权限
-	 */
-	@Configuration
-	@EnableResourceServer
-	@EnableConfigurationProperties(PermitUrlProperties.class)
-	public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
-
-		private static final String DEMO_RESOURCE_ID = "api-auth";
-		@Autowired
-		private PermitUrlProperties permitUrlProperties;
-
-		public void configure(WebSecurity web) throws Exception {
-			web.ignoring().antMatchers("/health");
-			web.ignoring().antMatchers("/oauth/user/token");
-			web.ignoring().antMatchers("/oauth/client/token");
-		}
-
-		@Override
-		public void configure(ResourceServerSecurityConfigurer resources) {
-			resources.resourceId(DEMO_RESOURCE_ID).stateless(true);
-		}
-
-		@Override
-		public void configure(HttpSecurity http) throws Exception {
-			http.requestMatcher(
-					/**
-					 * 判断来源请求是否包含oauth2授权信息
-					 */
-					new RequestMatcher() {
-						private AntPathMatcher antPathMatcher = new AntPathMatcher();
-						@Override
-						public boolean matches(HttpServletRequest request) {
-							// 请求参数中包含access_token参数
-							if (request.getParameter(OAuth2AccessToken.ACCESS_TOKEN) != null) {
-								return true;
-							}
-							// 头部的Authorization值以Bearer开头
-							String auth = request.getHeader("Authorization");
-							if (auth != null) {
-								if (auth.startsWith(OAuth2AccessToken.BEARER_TYPE)) {
-									return true;
-								}
-							}
-
-
-							String url = request.getRequestURI() ;
-
-							if (antPathMatcher.match(request.getRequestURI(),  "/oauth/userinfo")) {
-								return true;
-							}
-							if (antPathMatcher.match(request.getRequestURI(),  "/oauth/remove/token")) {
-								return true;
-							}
-							if (antPathMatcher.match(request.getRequestURI(),  "/oauth/get/token")) {
-								return true;
-							}
-							if (antPathMatcher.match(request.getRequestURI(),  "/oauth/refresh/token")) {
-								return true;
-							}
-
-							if (antPathMatcher.match(request.getRequestURI(),  "/oauth/token/list")) {
-								return true;
-							}
-
-							if (antPathMatcher.match("/clients/**",  request.getRequestURI())) {
-								return true;
-							}
-
-							if (antPathMatcher.match("/services/**",  request.getRequestURI())) {
-								return true;
-							}
-							if (antPathMatcher.match("/redis/**",  request.getRequestURI())) {
-								return true;
-							}
-							return false;
-						}
-					}
-
-			).authorizeRequests().antMatchers(permitUrlProperties.getOauth_urls()).permitAll().anyRequest()
-					.authenticated();
-		}
-
 	}
 
 }

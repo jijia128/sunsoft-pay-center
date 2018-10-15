@@ -46,33 +46,35 @@ public class RedisTemplateTokenStore implements TokenStore {
 
 
 	private RedisTemplate<String,Object> redisTemplate ;
-
 	public RedisTemplate<String,Object> getRedisTemplate() {
 		return redisTemplate;
 	}
-
 	public void setRedisTemplate(RedisTemplate<String,Object> redisTemplate) {
 		this.redisTemplate = redisTemplate;
 	}
 
 	private AuthenticationKeyGenerator authenticationKeyGenerator = new DefaultAuthenticationKeyGenerator();
-
 	public void setAuthenticationKeyGenerator(AuthenticationKeyGenerator authenticationKeyGenerator) {
 		this.authenticationKeyGenerator = authenticationKeyGenerator;
 	}
 
+	/**
+	 * 获取Token
+	 * @param authentication
+	 * @return
+	 */
+	@Override
 	public OAuth2AccessToken getAccessToken(OAuth2Authentication authentication) {
 		String key = authenticationKeyGenerator.extractKey(authentication);
 		OAuth2AccessToken accessToken = (OAuth2AccessToken) redisTemplate.opsForValue().get(AUTH_TO_ACCESS+key);
-		if (accessToken != null
-				&& !key.equals(authenticationKeyGenerator.extractKey(readAuthentication(accessToken.getValue())))) {
-			// Keep the stores consistent (maybe the same user is represented by this authentication but the details
-			// have changed)
+		if (accessToken != null && !key.equals(authenticationKeyGenerator.extractKey(readAuthentication(accessToken.getValue())))) {
+			// Keep the stores consistent (maybe the same user is represented by this authentication but the details have changed)
 			storeAccessToken(accessToken, authentication);
 		}
 		return accessToken;
 	}
 
+	@Override
 	public OAuth2Authentication readAuthentication(OAuth2AccessToken token) {
 		return readAuthentication(token.getValue());
 	}
