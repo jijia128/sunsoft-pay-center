@@ -22,7 +22,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.stereotype.Component;
 
 import com.central.client.oauth2.authorize.AuthorizeConfigManager;
-import com.central.model.properties.PermitUrlProperties;
+import com.central.client.oauth2.properties.PermitUrlProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**

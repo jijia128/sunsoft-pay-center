@@ -1,9 +1,9 @@
-package com.central.model.properties;
+package com.central.server.oauth2.properties;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
 * @author 作者 owen E-mail: 624191343@qq.com
@@ -17,10 +17,29 @@ public class PermitUrlProperties {
 	 /**
      * 监控中心和swagger需要访问的url
      */
-	 private static final String[] ENDPOINTS = {"/**/actuator/health", "/**/actuator/env", "/**/actuator/metrics/**", "/**/actuator/trace", "/**/actuator/dump",
-			 "/**/actuator/jolokia", "/**/actuator/info", "/**/actuator/logfile", "/**/actuator/refresh", "/**/actuator/flyway", "/**/actuator/liquibase",
-			 "/**/actuator/heapdump", "/**/actuator/loggers", "/**/actuator/auditevents", "/**/actuator/env/PID", "/**/actuator/jolokia/**",
-			 "/**/v2/api-docs/**", "/**/swagger-ui.html", "/**/swagger-resources/**", "/**/webjars/**", "/**/druid/**"};
+	 private static final String[] ENDPOINTS = {
+	 		 "/**/actuator/health",
+			 "/**/actuator/env",
+			 "/**/actuator/metrics/**",
+			 "/**/actuator/trace",
+			 "/**/actuator/dump",
+			 "/**/actuator/jolokia",
+			 "/**/actuator/info",
+			 "/**/actuator/logfile",
+			 "/**/actuator/refresh",
+			 "/**/actuator/flyway",
+			 "/**/actuator/liquibase",
+			 "/**/actuator/heapdump",
+			 "/**/actuator/loggers",
+			 "/**/actuator/auditevents",
+			 "/**/actuator/env/PID",
+			 "/**/actuator/jolokia/**",
+			 
+			 "/**/v2/api-docs/**",
+			 "/**/swagger-ui.html",
+			 "/**/swagger-resources/**",
+			 "/**/webjars/**",
+			 "/**/druid/**"};
     
 	private String[]  http_urls;
 	

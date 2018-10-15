@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.stereotype.Component;
 
-import com.central.model.properties.PermitUrlProperties;
+import com.central.client.oauth2.properties.PermitUrlProperties;
 
 /**
  * @author 作者 owen E-mail: 624191343@qq.com

@@ -18,7 +18,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 
-import com.central.model.properties.PermitUrlProperties;
+import com.central.server.oauth2.properties.PermitUrlProperties;
 
 /**
  * spring security配置

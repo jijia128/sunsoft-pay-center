@@ -50,10 +50,6 @@ public class RedisTemplateTokenStore implements TokenStore {
 
 
 	private AuthenticationKeyGenerator authenticationKeyGenerator = new DefaultAuthenticationKeyGenerator();
-
-
-
-	 
 	public void setAuthenticationKeyGenerator(AuthenticationKeyGenerator authenticationKeyGenerator) {
 		this.authenticationKeyGenerator = authenticationKeyGenerator;
 	}
