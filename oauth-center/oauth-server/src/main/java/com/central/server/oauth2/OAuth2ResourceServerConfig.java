@@ -1,19 +1,27 @@
 package com.central.server.oauth2;
 
+import com.central.server.oauth2.client.RedisClientDetailsService;
+import com.central.server.oauth2.code.RedisAuthorizationCodeServices;
 import com.central.server.oauth2.properties.PermitUrlProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.code.RandomValueAuthorizationCodeServices;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.util.AntPathMatcher;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.sql.DataSource;
 
 /**
  * @Description 资源服务器：定义资源的访问权限
@@ -23,7 +31,7 @@ import javax.servlet.http.HttpServletRequest;
 @Configuration
 @EnableResourceServer
 @EnableConfigurationProperties(PermitUrlProperties.class)
-public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
+public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     private static final String DEMO_RESOURCE_ID = "api-auth";
     @Autowired
