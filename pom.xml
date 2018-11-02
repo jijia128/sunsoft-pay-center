@@ -22,7 +22,7 @@
 		<hibernate-validator.verion>5.0.2.Final</hibernate-validator.verion>
 		<commons-collections4.version>4.1</commons-collections4.version>
 		<fastjson.version>1.2.47</fastjson.version>
-		<spring-boot-dependencies.version>2.0.1.RELEASE</spring-boot-dependencies.version>
+		<spring-boot-dependencies.version>2.0.2.RELEASE</spring-boot-dependencies.version>
 		<spring-cloud-dependencies.version>Finchley.SR1</spring-cloud-dependencies.version>
 	</properties>
 	
@@ -54,13 +54,13 @@
 
 	<dependencyManagement>
 		<dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-dependencies</artifactId>
-            <version>${spring-boot-dependencies.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring-boot-dependencies.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
