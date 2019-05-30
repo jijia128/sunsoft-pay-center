@@ -1,23 +1,25 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.sunsoft.pay.central</groupId>
         <artifactId>sunsoft-pay-center</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-  <artifactId>business-center</artifactId>
-  <packaging>pom</packaging>
-  <modules>
-  	<!-- 用户中心 -->
-	<module>user-center</module>
-  	<!-- 文件中心 -->
-	<module>file-center</module>
-
-      <!-- test中心 -->
-      <module>test-center</module>
-      <!-- 后台中心 -->
-      <module>back-center</module>
-      <!-- 后台中心 -->
-      <module>front-center</module>
-  </modules>
+    <artifactId>business-center</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <!-- 用户中心 -->
+        <module>user-center</module>
+        <!-- 文件中心 -->
+        <module>file-center</module>
+        <!-- test中心 -->
+        <module>test-center</module>
+        <!-- 后台中心 -->
+        <module>back-center</module>
+        <!-- 后台中心 -->
+        <module>front-center</module>
+        <!-- 后台中心 -->
+        <module>house-center</module>
+    </modules>
 </project>
