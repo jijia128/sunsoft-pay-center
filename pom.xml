@@ -20,7 +20,7 @@
 		<security-oauth2.version>2.3.3.RELEASE</security-oauth2.version>
 		<hibernate-validator.verion>5.0.2.Final</hibernate-validator.verion>
 		<commons-collections4.version>4.1</commons-collections4.version>
-		<fastjson.version>1.2.47</fastjson.version>
+		<fastjson.version>1.2.83</fastjson.version>
 		<spring-boot-dependencies.version>2.0.1.RELEASE</spring-boot-dependencies.version>
 		<spring-cloud-dependencies.version>Finchley.SR1</spring-cloud-dependencies.version>
 	</properties>
